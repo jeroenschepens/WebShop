@@ -19,14 +19,19 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">PetShop</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Products</a></li>
+        </ul>
     </div>
 </nav>
 <div class="container">
     <h1>Products</h1>
-    <div ng-repeat="product in shop.products" class="col-sm-4">
-        <h2>{{product.name}}</h2>
-        <p>{{product.description}}</p>
-        <p>{{product.price | currency:"€"}}</p>
+    <div class="row">
+        <div ng-repeat="product in shop.products" class="col-sm-4">
+            <h2>{{product.name}}</h2>
+            <p>{{product.description}}</p>
+            <p>{{product.price | currency:"€"}}</p>
+        </div>
     </div>
 </div>
 </body>
