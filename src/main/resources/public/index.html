@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="webshop">
+<html lang="en" ng-app="PetShop">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,30 +11,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
           integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 </head>
-<body ng-controller="ProductController as shop">
+<body>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-<script src="app/app.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/routes.js"></script>
+<script src="js/controllers/menu-controller.js"></script>
+<script src="js/controllers/product-controller.js"></script>
 <nav class="navbar navbar-inverse navbar-default navbar-static-top">
-    <div class="container">
+    <div class="container" ng-controller="MenuController">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">PetShop</a>
+            <a class="navbar-brand" href="/#/">PetShop</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Products</a></li>
+            <li ng-class="getClass('/products')"><a href="/#/products">Products</a></li>
         </ul>
     </div>
 </nav>
-<div class="container">
-    <h1>Products</h1>
-    <hr class="divider">
-    <div class="row">
-        <div ng-repeat="product in shop.products" class="col-sm-4">
-            <h2>{{product.name}}</h2>
-            <p>{{product.description}}</p>
-            <p>{{product.price | currency:"€"}}</p>
-            <hr class="divider">
-        </div>
-    </div>
-</div>
+<div ng-view class="container"></div>
 </body>
 </html>
