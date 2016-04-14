@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=18080"})
-public class ProductControllerIntegrationTest {
+public class ProductControllerIT {
 
     private static final String BASE_URL = "http://localhost:";
 
