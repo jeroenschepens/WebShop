@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
@@ -25,8 +24,6 @@ import static org.junit.Assert.assertNotNull;
 @Transactional
 public class ProductServiceTest {
 
-    private MockMvc mvc;
-
     @Autowired
     private ProductService productService;
 
@@ -37,5 +34,4 @@ public class ProductServiceTest {
         assertNotNull("failure - expected not null", list);
         assertEquals("failure - expected list size", 1, list.size());
     }
-
 }

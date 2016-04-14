@@ -1,6 +1,8 @@
 package nl.sogeti.webshop.rest;
 
 import nl.sogeti.webshop.Application;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -15,6 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 /**
  * Created by cuong on 13-4-16.
  * TODO: Fix NPE so that this is more an Unit Test than an Integration Test
@@ -29,17 +32,12 @@ public class ProductControllerTest {
     @Autowired
     private WebApplicationContext wac;
 
-    @org.junit.Before
+    @Before
     public void setUp() throws Exception {
         mvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
 
-    @org.junit.After
-    public void tearDown() throws Exception {
-
-    }
-
-    @org.junit.Test
+    @Test
     public void getProducts() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/products").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
