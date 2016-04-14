@@ -1,0 +1,1 @@
+INSERT INTO PRODUCT (NAME, DESCRIPTION, PRICE) VALUES ('Test', 'Test description', 1.95);
