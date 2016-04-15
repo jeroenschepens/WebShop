@@ -1,9 +1,6 @@
 package nl.sogeti.webshop.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -25,6 +22,10 @@ public class Product {
 
     @NotNull
     private BigDecimal price;
+
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private Category category;
 
     public Long getId() {
         return id;
@@ -56,5 +57,13 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -1,10 +1,10 @@
 package nl.sogeti.webshop.rest;
 
+import nl.sogeti.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import nl.sogeti.webshop.service.ProductService;
 
 import java.util.List;
 
@@ -20,5 +20,10 @@ public class ProductController {
     @RequestMapping("/products")
     public List getProducts() {
         return productService.findAll();
+    }
+
+    @RequestMapping("/products/{id}")
+    public List getProductsByCategory(@PathVariable("id") Long id) {
+        return productService.findByCategoryId(id);
     }
 }

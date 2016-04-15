@@ -1,0 +1,8 @@
+<h1>Categorieën</h1>
+<hr class="divider">
+<div class="row">
+    <div ng-repeat="category in shop.categories" class="col-sm-3">
+        <a href="/#/categories/{{category.id}}"><h2>{{category.name}}</h2></a>
+        <hr class="divider">
+    </div>
+</div>
