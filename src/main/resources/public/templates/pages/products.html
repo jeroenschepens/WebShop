@@ -9,6 +9,7 @@
     </div>
 </div>
 <h1>Producten</h1>
+<h1>{{shop.countItems()}}</h1>
 <hr class="divider">
 <div class="row">
     <div class="col-sm-12">
@@ -16,7 +17,7 @@
             <table class="table table-bordered">
                 <tr ng-repeat="product in shop.products | filter: shop.categoryFilter">
                     <td><h4>{{product.name}}</h4>{{product.description}}
-                        <button type="button" class="btn btn-success btn-lg buy">
+                        <button type="button" ng-click="shop.addItem(product.id)" class="btn btn-success buy">
                             {{product.price | currency:"€"}}&nbsp;
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                         </button>
