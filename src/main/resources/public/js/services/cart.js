@@ -15,6 +15,17 @@ angular.module('PetShop').factory('Cart', ['$localStorage', function ($localStor
         }
     };
 
+    factory.removeItem = function (item) {
+        var amount = $localStorage.cart[item];
+        if (!isNaN(amount)) {
+            if (amount > 1) {
+                $localStorage.cart[item] = amount - 1;
+            } else {
+                delete $localStorage.cart[item];
+            }
+        }
+    };
+
     factory.countItems = function () {
         var count = 0;
         Object.keys($localStorage.cart).forEach(function (key) {
@@ -22,12 +33,12 @@ angular.module('PetShop').factory('Cart', ['$localStorage', function ($localStor
         });
         return count;
     };
-    
-    factory.getItems = function() {
+
+    factory.getItems = function () {
         return $localStorage.cart;
     };
-    
-    factory.clearItems = function() {
+
+    factory.clearItems = function () {
         $localStorage.cart = {};
     };
 

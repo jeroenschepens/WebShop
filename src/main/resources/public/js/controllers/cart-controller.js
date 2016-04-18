@@ -7,8 +7,8 @@ angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'C
      * Synchronizes memory with local storage
      */
     function refresh() {
-        $scope.items = [];
-        $scope.total = 0;
+        var items = [];
+        var total = 0;
         Products.getProducts().then(function (products) {
             var cart = Cart.getItems();
             for (var item in cart) {
@@ -16,10 +16,12 @@ angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'C
                     var product = products[item];
                     product['amount'] = cart[item];
                     //Calculate total price
-                    $scope.total += product.amount * product.price;
-                    $scope.items.push(product);
+                    total += product.amount * product.price;
+                    items.push(product);
                 }
             }
+            $scope.items = items;
+            $scope.total = total;
         });
     }
 
@@ -35,6 +37,16 @@ angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'C
 
     this.clearItems = function () {
         Cart.clearItems();
+        refresh();
+    };
+
+    $scope.addItem = function (item) {
+        Cart.addItem(item);
+        refresh();
+    };
+
+    $scope.removeItem = function (item) {
+        Cart.removeItem(item);
         refresh();
     };
 }]);

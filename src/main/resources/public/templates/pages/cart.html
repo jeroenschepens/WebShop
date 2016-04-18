@@ -19,7 +19,12 @@
     <tbody>
     <tr ng-repeat="item in items">
         <td>{{item.name}}</td>
-        <td>{{item.amount}}</td>
+        <td>{{item.amount}}
+            <div class="btn-group btn-group-sm" role="group">
+                <button ng-click="addItem(item.id)" type="button" class="btn btn-success">+</button>
+                <button ng-click="removeItem(item.id)" type="button" class="btn btn-danger">-</button>
+            </div>
+        </td>
         <td>{{item.price |currency:"€"}}</td>
         <td>{{item.price * item.amount | currency:"€"}}</td>
     </tr>
