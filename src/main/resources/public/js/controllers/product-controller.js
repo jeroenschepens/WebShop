@@ -1,11 +1,29 @@
-angular.module('PetShop').controller('ProductController', ['$http', '$routeParams', function ($http, $routeParams) {
+angular.module('PetShop').controller('ProductController', ['$http', '$log', function ($http, $log) {
     var shop = this;
     this.products = [];
-    this.category = '';
-    $http.get('/products/' + $routeParams.id).success(function (data) {
-        shop.products = data;
-        if (data.length > 0) {
-            shop.category = data[0].category.name;
+    this.categories = [];
+
+    shop.categoryFilter = {
+        category: {
+            name: '',
+            id: ''
         }
+    };
+
+    $http.get('/products').success(function (data) {
+        shop.products = data;
     });
+    $http.get('/categories').success(function (data) {
+        shop.categories = data;
+    });
+
+    shop.activateCategory = function (category) {
+        shop.categoryFilter.category.name = category.name;
+        shop.categoryFilter.category.id = category.id;
+    };
+
+    shop.deactivateCategory = function () {
+        shop.categoryFilter.category.name = '';
+        shop.categoryFilter.category.id = '';
+    };
 }]);

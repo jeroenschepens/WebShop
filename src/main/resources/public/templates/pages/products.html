@@ -1,10 +1,28 @@
-<h1>{{shop.category}}</h1>
+<h1>Categorieën</h1>
 <hr class="divider">
 <div class="row">
-    <div ng-repeat="product in shop.products" class="col-sm-4">
-        <h2>{{product.name}}</h2>
-        <p>{{product.description}}</p>
-        <p>{{product.price | currency:"€"}}</p>
-        <hr class="divider">
+    <div class="col-sm-3">
+        <a ng-click="shop.deactivateCategory(category)"><h2>Alles</h2></a>
+    </div>
+    <div ng-repeat="category in shop.categories" class="col-sm-3">
+        <a ng-click="shop.activateCategory(category)"><h2>{{category.name}}</h2></a>
+    </div>
+</div>
+<h1>Producten</h1>
+<hr class="divider">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <table class="table table-bordered">
+                <tr ng-repeat="product in shop.products | filter: shop.categoryFilter">
+                    <td><h4>{{product.name}}</h4>{{product.description}}
+                        <button type="button" class="btn btn-success btn-lg buy">
+                            {{product.price | currency:"€"}}&nbsp;
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
