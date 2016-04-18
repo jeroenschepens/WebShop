@@ -1,8 +1,28 @@
 <h1>Winkelmandje</h1>
 <table class="table">
-    <tr ng-repeat="(key, value) in cart.getItems()">
-        <td>Product #{{key}}</td>
-        <td>{{value}}</td>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Hoeveelheid</th>
+        <th>Prijs</th>
+        <th>Totaal</th>
     </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{total | currency:"€"}}</td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr ng-repeat="item in items">
+        <td>{{item.name}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.price |currency:"€"}}</td>
+        <td>{{item.price * item.amount | currency:"€"}}</td>
+    </tr>
+    </tbody>
 </table>
 <button type="button" ng-click="cart.clearItems()" class="btn btn-danger">Verwijder alles</button>

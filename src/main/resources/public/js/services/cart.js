@@ -1,38 +1,34 @@
 angular.module('PetShop').factory('Cart', ['$localStorage', function ($localStorage) {
 
-    var cartService = this;
-
     if (typeof $localStorage.cart !== 'object' || $localStorage.cart == null) {
         $localStorage.cart = {};
     }
 
-    cartService.cart = $localStorage.cart;
-
     var factory = {};
 
     factory.addItem = function (item) {
-        var amount = cartService.cart[item];
+        var amount = $localStorage.cart[item];
         if (isNaN(amount)) {
-            cartService.cart[item] = 1;
+            $localStorage.cart[item] = 1;
         } else {
-            cartService.cart[item] = amount + 1;
+            $localStorage.cart[item] = amount + 1;
         }
     };
 
     factory.countItems = function () {
         var count = 0;
-        Object.keys(cartService.cart).forEach(function (key) {
-            count = count + cartService.cart[key];
+        Object.keys($localStorage.cart).forEach(function (key) {
+            count = count + $localStorage.cart[key];
         });
         return count;
     };
     
     factory.getItems = function() {
-        return cartService.cart;
+        return $localStorage.cart;
     };
     
     factory.clearItems = function() {
-        cartService.cart = {};
+        $localStorage.cart = {};
     };
 
     return factory;
