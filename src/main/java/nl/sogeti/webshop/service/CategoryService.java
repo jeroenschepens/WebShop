@@ -1,5 +1,6 @@
 package nl.sogeti.webshop.service;
 
+import nl.sogeti.webshop.domain.Category;
 import nl.sogeti.webshop.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,12 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ProductService {
+public class CategoryService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private CategoryRepository categoryRepository;
 
-    public List<Product> findAll() {
-        return productRepository.findAll();
-    }
-
-    public List<Product> findByCategoryId(Long categoryId) {
-        return productRepository.findByCategoryId(categoryId);
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 }
