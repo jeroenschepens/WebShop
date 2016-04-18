@@ -1,1 +1,1 @@
-angular.module('PetShop', ['ngRoute']);
+angular.module('PetShop', ['ngRoute', 'ngStorage']);

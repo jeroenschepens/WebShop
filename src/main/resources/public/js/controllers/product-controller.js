@@ -1,4 +1,4 @@
-angular.module('PetShop').controller('ProductController', ['$http', '$log', function ($http, $log) {
+angular.module('PetShop').controller('ProductController', ['$http', 'Cart', function ($http, Cart) {
     var shop = this;
     this.products = [];
     this.categories = [];
@@ -25,5 +25,9 @@ angular.module('PetShop').controller('ProductController', ['$http', '$log', func
     shop.deactivateCategory = function () {
         shop.categoryFilter.category.name = '';
         shop.categoryFilter.category.id = '';
+    };
+
+    shop.addItem = function (item) {
+        Cart.addItem(item);
     };
 }]);

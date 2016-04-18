@@ -1,0 +1,33 @@
+<h1>Winkelmandje</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Hoeveelheid</th>
+        <th>Prijs</th>
+        <th>Totaal</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{total | currency:"€"}}</td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr ng-repeat="item in items">
+        <td>{{item.name}}</td>
+        <td>{{item.amount}}
+            <div class="btn-group btn-group-sm" role="group">
+                <button ng-click="addItem(item.id)" type="button" class="btn btn-success">+</button>
+                <button ng-click="removeItem(item.id)" type="button" class="btn btn-danger">-</button>
+            </div>
+        </td>
+        <td>{{item.price |currency:"€"}}</td>
+        <td>{{item.price * item.amount | currency:"€"}}</td>
+    </tr>
+    </tbody>
+</table>
+<button type="button" ng-click="cart.clearItems()" class="btn btn-danger">Verwijder alles</button>
