@@ -21,13 +21,13 @@
 <script src="js/controllers/product-controller.js"></script>
 <script src="js/controllers/cart-controller.js"></script>
 <nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
+    <div class="container" ng-controller="MenuController">
         <div class="navbar-header">
             <a class="navbar-brand" href="/#/">PetShop</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li ng-controller="CartController as cart">
-                <a href="/#/"><span class="glyphicon glyphicon-shopping-cart"></span> {{cart.countItems()}}</a>
+            <li ng-class="getClass('/cart')">
+                <a href="/#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> {{countItems()}}</a>
             </li>
         </ul>
     </div>

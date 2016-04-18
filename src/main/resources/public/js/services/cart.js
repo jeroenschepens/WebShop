@@ -26,6 +26,14 @@ angular.module('PetShop').factory('Cart', ['$localStorage', function ($localStor
         });
         return count;
     };
+    
+    factory.getItems = function() {
+        return cartService.cart;
+    };
+    
+    factory.clearItems = function() {
+        cartService.cart = {};
+    };
 
     return factory;
 }]);

@@ -1,0 +1,8 @@
+<h1>Winkelmandje</h1>
+<table class="table">
+    <tr ng-repeat="(key, value) in cart.getItems()">
+        <td>Product #{{key}}</td>
+        <td>{{value}}</td>
+    </tr>
+</table>
+<button type="button" ng-click="cart.clearItems()" class="btn btn-danger">Verwijder alles</button>
