@@ -49,13 +49,4 @@ angular.module('PetShop').controller('CartController', ['$scope', '$location', '
         Cart.removeItem(item);
         refresh();
     };
-
-    $scope.placeOrder = function () {
-        Cart.placeOrder().success(function (data) {
-            Cart.clearItems();
-            $location.path('/');
-        }).error(function (data) {
-            console.log(data);
-        });
-    };
 }]);

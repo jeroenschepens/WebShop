@@ -13,6 +13,9 @@ public class CustomerOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Embedded
+    private CustomerData customerData;
+
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_ref")
     private List<OrderLine> orderLines;
@@ -23,6 +26,14 @@ public class CustomerOrder {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public CustomerData getCustomerData() {
+        return customerData;
+    }
+
+    public void setCustomerData(CustomerData customerData) {
+        this.customerData = customerData;
     }
 
     public List<OrderLine> getOrderLines() {

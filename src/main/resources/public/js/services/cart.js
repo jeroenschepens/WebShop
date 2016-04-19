@@ -42,9 +42,11 @@ angular.module('PetShop').factory('Cart', ['$localStorage', '$http', function ($
             $localStorage.cart = {};
         },
 
-        placeOrder: function () {
+        placeOrder: function (customer) {
             console.log($localStorage.cart);
-            return $http.post('/orders',$localStorage.cart);
+            console.log(customer);
+            var order = {customerData: customer, orderLines: $localStorage.cart};
+            return $http.post('/orders', order);
         }
     }
 }]);
