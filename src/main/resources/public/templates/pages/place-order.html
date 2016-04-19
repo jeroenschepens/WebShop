@@ -1,54 +1,72 @@
 <div ng-hide="ready">
     <h1>Bestelling plaatsen</h1>
     <form name="orderForm" class="form-horizontal" novalidate>
-        <div class="form-group">
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.firstName.$dirty && orderForm.firstName.$invalid, 'has-success': orderForm.firstName.$dirty && orderForm.firstName.$valid}">
             <label for="firstName" class="col-sm-2 control-label">Voornaam</label>
             <div class="col-sm-10">
-                <input ng-model="customer.firstName" type="text" class="form-control" id="firstName"
+                <input ng-model="customer.firstName" type="text" class="form-control" name="firstName" id="firstName"
                        placeholder="Voornaam"
                        required>
             </div>
         </div>
-        <div class="form-group">
-            <label for="lastName" class="col-sm-2 control-label">Achternaam</label>
-            <div class="col-sm-2">
-                <input ng-model="customer.infix" type="text" class="form-control" id="infix"
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.infix.$dirty && orderForm.infix.$invalid, 'has-success': orderForm.infix.$dirty && orderForm.infix.$valid}">
+            <label for="infix" class="col-sm-2 control-label">Tussenvoegsel</label>
+            <div class="col-sm-10">
+                <input ng-model="customer.infix" type="text" class="form-control" name="infix" id="infix"
                        placeholder="Tussenvoegsel">
             </div>
-            <div class="col-sm-8">
-                <input ng-model="customer.lastName" type="text" class="form-control" id="lastName"
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.lastName.$dirty && orderForm.lastName.$invalid, 'has-success': orderForm.lastName.$dirty && orderForm.lastName.$valid}">
+            <label for="lastName" class="col-sm-2 control-label">Achternaam</label>
+            <div class="col-sm-10">
+                <input ng-model="customer.lastName" type="text" class="form-control" name="lastName" id="lastName"
                        placeholder="Achternaam"
                        required>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.email.$dirty && orderForm.email.$invalid, 'has-success': orderForm.email.$dirty && orderForm.email.$valid}">
             <label for="email" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-                <input ng-model="customer.email" type="email" class="form-control" id="email" placeholder="Email"
+                <input ng-model="customer.email" type="email" class="form-control" name="email" id="email"
+                       placeholder="Email"
                        required>
             </div>
         </div>
-        <div class="form-group">
-            <label for="street" class="col-sm-2 control-label">Adres</label>
-            <div class="col-sm-8">
-                <input ng-model="customer.street" type="text" class="form-control" id="street"
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.street.$dirty && orderForm.street.$invalid, 'has-success': orderForm.street.$dirty && orderForm.street.$valid}">
+            <label for="street" class="col-sm-2 control-label">Straat</label>
+            <div class="col-sm-10">
+                <input ng-model="customer.street" type="text" class="form-control" name="street" id="street"
                        placeholder="Straat"
                        required>
             </div>
-            <div class="col-sm-2">
-                <input ng-model="customer.houseNumber" type="text" class="form-control" id="houseNumber"
-                       placeholder="Huisnummer" required>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.houseNumber.$dirty && orderForm.houseNumber.$invalid, 'has-success': orderForm.houseNumber.$dirty && orderForm.houseNumber.$valid}">
+            <label for="houseNumber" class="col-sm-2 control-label">Huisnummer</label>
+            <div class="col-sm-10">
+                <input ng-model="customer.houseNumber" type="text" class="form-control" name="houseNumber"
+                       id="houseNumber" placeholder="Huisnummer" ng-pattern="hnRegex" required>
             </div>
         </div>
-        <div class="form-group">
-            <label for="city" class="col-sm-2 control-label">Woonplaats</label>
-            <div class="col-sm-2">
-                <input ng-model="customer.postCode" type="text" class="form-control" id="postCode"
-                       placeholder="Postcode"
-                       required>
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.postCode.$dirty && orderForm.postCode.$invalid, 'has-success': orderForm.postCode.$dirty && orderForm.postCode.$valid}">
+            <label for="postCode" class="col-sm-2 control-label">Postcode</label>
+            <div class="col-sm-10">
+                <input ng-model="customer.postCode" type="text" class="form-control" name="postCode" id="postCode"
+                       placeholder="Postcode" ng-pattern="pcRegex" required>
             </div>
-            <div class="col-sm-8">
-                <input ng-model="customer.city" type="text" class="form-control" id="city" placeholder="Woonplaats"
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': orderForm.city.$dirty && orderForm.city.$invalid, 'has-success': orderForm.city.$dirty && orderForm.city.$valid}">
+            <label for="city" class="col-sm-2 control-label">Woonplaats</label>
+            <div class="col-sm-10">
+                <input ng-model="customer.city" type="text" class="form-control" name="city" id="city"
+                       placeholder="Woonplaats"
                        required>
             </div>
         </div>
