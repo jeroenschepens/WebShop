@@ -35,9 +35,14 @@ public class ProductService {
     public void placeOrder(Map<Long, Integer> lines) {
         CustomerOrder order = new CustomerOrder();
         order.setOrderLines(new ArrayList<>());
+        boolean hasLines = false;
         for (Product product : productRepository.findByIdIn(new ArrayList<>(lines.keySet()))) {
+            hasLines = true;
             OrderLine orderLine = new OrderLine(product, lines.get(product.getId()));
             order.getOrderLines().add(orderLine);
+        }
+        if (!hasLines) {
+            throw new RuntimeException("Order must have lines!");
         }
         orderRepository.save(order);
     }

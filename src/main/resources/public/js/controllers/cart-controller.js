@@ -1,4 +1,4 @@
-angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'Cart', function ($scope, Products, Cart) {
+angular.module('PetShop').controller('CartController', ['$scope', '$location', 'Products', 'Cart', function ($scope, $location, Products, Cart) {
 
     $scope.items = [];
     $scope.total = 0;
@@ -51,6 +51,11 @@ angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'C
     };
 
     $scope.placeOrder = function () {
-        Cart.placeOrder();
+        Cart.placeOrder().success(function (data) {
+            Cart.clearItems();
+            $location.path('/');
+        }).error(function (data) {
+            console.log(data);
+        });
     };
 }]);
