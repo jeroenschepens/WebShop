@@ -1,10 +1,18 @@
 <h1>Categorieën</h1>
 <div class="row">
-    <div class="col-sm-3">
-        <a ng-click="shop.deactivateCategory(category)"><h2>Alles</h2></a>
-    </div>
-    <div ng-repeat="category in shop.categories" class="col-sm-3">
-        <a ng-click="shop.activateCategory(category)"><h2>{{category.name}}</h2></a>
+    <div class="col-sm-12">
+        <div class="btn-group" role="group">
+            <button ng-class="shop.getClass('')" type="button"
+                    ng-click="shop.deactivateCategory()"
+                    class="btn btn-lg">
+                Alles
+            </button>
+            <button ng-repeat="category in shop.categories" ng-class="shop.getClass(category.id)" type="button"
+                    ng-click="shop.activateCategory(category)"
+                    class="btn btn-lg">
+                {{category.name}}
+            </button>
+        </div>
     </div>
 </div>
 <h1>Producten</h1>
