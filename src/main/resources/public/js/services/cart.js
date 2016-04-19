@@ -43,8 +43,6 @@ angular.module('PetShop').factory('Cart', ['$localStorage', '$http', function ($
         },
 
         placeOrder: function (customer) {
-            console.log($localStorage.cart);
-            console.log(customer);
             var order = {customerData: customer, orderLines: $localStorage.cart};
             return $http.post('/orders', order);
         }

@@ -32,7 +32,7 @@ public class ProductService {
         return productRepository.findByCategoryId(categoryId);
     }
 
-    public void placeOrder(OrderDTO orderRequest) {
+    public CustomerOrder placeOrder(OrderDTO orderRequest) {
         CustomerOrder order = new CustomerOrder();
         order.setOrderLines(new ArrayList<>());
         order.setCustomerData(orderRequest.getCustomerData());
@@ -46,5 +46,6 @@ public class ProductService {
             throw new RuntimeException("Order must have lines!");
         }
         orderRepository.save(order);
+        return order;
     }
 }
