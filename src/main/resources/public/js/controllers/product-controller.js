@@ -32,11 +32,7 @@ angular.module('PetShop').controller('ProductController', ['$http', 'Cart', func
     };
 
     shop.getClass = function (cat) {
-        
         if (shop.categoryFilter.category.id === cat) {
-            
-            
-            
             return "btn-info"
         } else {
             return "btn-default"
