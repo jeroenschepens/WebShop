@@ -49,4 +49,8 @@ angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'C
         Cart.removeItem(item);
         refresh();
     };
+
+    $scope.placeOrder = function () {
+        Cart.placeOrder();
+    };
 }]);
