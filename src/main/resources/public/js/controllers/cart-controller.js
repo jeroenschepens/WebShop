@@ -2,6 +2,7 @@ angular.module('PetShop').controller('CartController', ['$scope', '$location', '
 
     $scope.items = [];
     $scope.total = 0;
+    $scope.ready = false;
 
     /**
      * Synchronizes memory with local storage
@@ -22,6 +23,7 @@ angular.module('PetShop').controller('CartController', ['$scope', '$location', '
             }
             $scope.items = items;
             $scope.total = total;
+            $scope.ready = true;
         });
     }
 
