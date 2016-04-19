@@ -2,8 +2,8 @@ package nl.sogeti.webshop.service;
 
 import nl.sogeti.webshop.domain.CustomerOrder;
 import nl.sogeti.webshop.domain.OrderLine;
-import nl.sogeti.webshop.dto.OrderDTO;
 import nl.sogeti.webshop.domain.Product;
+import nl.sogeti.webshop.dto.OrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,7 +39,7 @@ public class ProductService {
         boolean hasLines = false;
         for (Product product : productRepository.findByIdIn(new ArrayList<>(orderRequest.getOrderLines().keySet()))) {
             hasLines = true;
-            OrderLine orderLine = new OrderLine(product, orderRequest.getOrderLines().get(product.getId()));
+            OrderLine orderLine = new OrderLine(product, orderRequest.getOrderLines().get(product.getId()), product.getPrice());
             order.getOrderLines().add(orderLine);
         }
         if (!hasLines) {

@@ -1,6 +1,7 @@
 package nl.sogeti.webshop.domain;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by schepeje on 19-4-2016.
@@ -20,12 +21,15 @@ public class OrderLine {
 
     private Integer quantity;
 
+    private BigDecimal price;
+
     public OrderLine() {
     }
 
-    public OrderLine(Product product, Integer quantity) {
+    public OrderLine(Product product, Integer quantity, BigDecimal price) {
         this.product = product;
         this.quantity = quantity;
+        this.price = price;
     }
 
     public Long getId() {
@@ -50,5 +54,13 @@ public class OrderLine {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
