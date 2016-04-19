@@ -10,7 +10,7 @@
           integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <link rel="stylesheet" href="css/petshop.css">
 </head>
-<body>
+<body class="noselect">
 <script src="js/vendor/angular.min.js"></script>
 <script src="js/vendor/angular-route.min.js"></script>
 <script src="js/vendor/ngStorage.min.js"></script>
@@ -27,6 +27,11 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/#/">PetSupplies Online</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li ng-class="getClass('/')">
+                <a href="/#/">Producten</a>
+            </li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
             <li ng-class="getClass('/cart')">
                 <a href="/#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> {{countItems()}}</a>

@@ -1,4 +1,4 @@
-<h1>Categorieën</h1>
+<h1>Producten</h1>
 <div class="row">
     <div class="col-sm-12">
         <div class="btn-group" role="group">
@@ -15,8 +15,6 @@
         </div>
     </div>
 </div>
-<h1>Producten</h1>
-<h1>{{shop.countItems()}}</h1>
 <div class="row">
     <div class="col-sm-12">
         <table class="table">
@@ -32,7 +30,7 @@
                 <td><h4>{{product.name}}</h4>{{product.description}}</td>
                 <td> {{product.price | currency:"€"}}</td>
                 <td>
-                    <button type="button" ng-click="shop.addItem(product.id)" class="btn btn-success btn-sm buy">
+                    <button type="button" ng-click="shop.addItem(product.id)" class="btn btn-success btn-sm pull-right">
                         <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Voeg toe
                     </button>
                 </td>
