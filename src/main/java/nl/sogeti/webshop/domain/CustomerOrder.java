@@ -1,6 +1,7 @@
 package nl.sogeti.webshop.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -12,6 +13,8 @@ public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private LocalDate date;
 
     @Embedded
     private CustomerData customerData;
@@ -26,6 +29,14 @@ public class CustomerOrder {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public CustomerData getCustomerData() {

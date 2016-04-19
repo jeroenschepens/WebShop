@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class ProductService {
 
     public CustomerOrder placeOrder(OrderDTO orderRequest) {
         CustomerOrder order = new CustomerOrder();
+        order.setDate(LocalDate.now());
         order.setOrderLines(new ArrayList<>());
         order.setCustomerData(orderRequest.getCustomerData());
         boolean hasLines = false;
