@@ -15,10 +15,14 @@ angular.module('PetShop').controller('CartController', ['$scope', '$location', '
             for (var item in cart) {
                 if (cart.hasOwnProperty(item)) {
                     var product = products[item];
-                    product['amount'] = cart[item];
-                    //Calculate total price
-                    total += product.amount * product.price;
-                    items.push(product);
+                    if (product !== undefined) {
+                        product['amount'] = cart[item];
+                        //Calculate total price
+                        total += product.amount * product.price;
+                        items.push(product);
+                    } else {
+                        Cart.clearItem(item);
+                    }
                 }
             }
             $scope.items = items;
