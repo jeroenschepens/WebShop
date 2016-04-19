@@ -19,9 +19,11 @@ public class CustomerData {
     @Email
     private String email;
 
-    private String postCode;
+    private String street;
 
     private String houseNumber;
+
+    private String postCode;
 
     private String city;
 
@@ -58,12 +60,12 @@ public class CustomerData {
         this.email = email;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public String getStreet() {
+        return street;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getHouseNumber() {
@@ -72,6 +74,14 @@ public class CustomerData {
 
     public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 
     public String getCity() {
