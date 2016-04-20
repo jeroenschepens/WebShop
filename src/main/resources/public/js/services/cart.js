@@ -25,8 +25,8 @@ angular.module('PetShop').factory('Cart', ['$localStorage', '$http', function ($
                 }
             }
         },
-        
-        clearItem: function(item) {
+
+        clearItem: function (item) {
             delete $localStorage.cart[item];
         },
 
