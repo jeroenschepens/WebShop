@@ -1,7 +1,8 @@
-angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'Cart', function ($scope, Products, Cart) {
+angular.module('PetShop').controller('CartController', ['$scope', '$location', 'Products', 'Cart', function ($scope, $location, Products, Cart) {
 
     $scope.items = [];
     $scope.total = 0;
+    $scope.ready = false;
 
     /**
      * Synchronizes memory with local storage
@@ -14,14 +15,19 @@ angular.module('PetShop').controller('CartController', ['$scope', 'Products', 'C
             for (var item in cart) {
                 if (cart.hasOwnProperty(item)) {
                     var product = products[item];
-                    product['amount'] = cart[item];
-                    //Calculate total price
-                    total += product.amount * product.price;
-                    items.push(product);
+                    if (product !== undefined) {
+                        product['amount'] = cart[item];
+                        //Calculate total price
+                        total += product.amount * product.price;
+                        items.push(product);
+                    } else {
+                        Cart.clearItem(item);
+                    }
                 }
             }
             $scope.items = items;
             $scope.total = total;
+            $scope.ready = true;
         });
     }
 

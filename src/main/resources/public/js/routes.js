@@ -7,5 +7,9 @@ angular.module('PetShop').config(function ($routeProvider) {
         templateUrl: '/templates/pages/cart.html',
         controller: 'CartController',
         controllerAs: 'cart'
+    }).when('/place-order', {
+        templateUrl: '/templates/pages/place-order.html',
+        controller: 'PlaceController',
+        controllerAs: 'place'
     }).otherwise({redirectTo: '/'});
 });
