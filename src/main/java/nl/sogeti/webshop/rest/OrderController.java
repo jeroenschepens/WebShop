@@ -23,7 +23,6 @@ public class OrderController {
 
     @RequestMapping(value = "/orders", method = RequestMethod.POST)
     public Map<String, Long> placeOrder(@RequestBody OrderDTO orderRequest) {
-        System.out.println(orderRequest.getCustomerData());
         CustomerOrder order = productService.placeOrder(orderRequest);
         Map<String, Long> id = new HashMap<>();
         id.put("id", order.getId());

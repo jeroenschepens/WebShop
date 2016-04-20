@@ -27,7 +27,6 @@ public class CustomerData {
 
     private String city;
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -90,18 +89,5 @@ public class CustomerData {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomerData{" +
-                "firstName='" + firstName + '\'' +
-                ", infix='" + infix + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", postCode='" + postCode + '\'' +
-                ", houseNumber='" + houseNumber + '\'' +
-                ", city='" + city + '\'' +
-                '}';
     }
 }
