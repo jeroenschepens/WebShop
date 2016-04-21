@@ -4,8 +4,11 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
 
     var login = this;
 
-    $http.get('/login').success(function (data) {
-        login.user = data;
+    login.user = {};
+    login.loggedIn = false;
+
+    $http.get('/login').then(function (data) {
+        login.user = data.data;
     });
 
     return {
@@ -47,19 +50,24 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
             return $http.get('/login', {
                 headers: {'Authorization': 'Basic ' + output}
             }).then(function (data) {
-                console.log(data);
+                login.loggedIn = true;
                 login.user = data.data;
             });
         },
 
         logout: function () {
             return $http.get('/logout').then(function () {
-                login.user = null;
+                login.loggedIn = false;
+                login.user = {};
             });
         },
 
         getUser: function () {
             return login.user;
+        },
+
+        isLoggedIn: function () {
+            return login.loggedIn;
         }
     }
 }]);

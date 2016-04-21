@@ -4,6 +4,7 @@ import nl.sogeti.webshop.domain.CustomerOrder;
 import nl.sogeti.webshop.domain.OrderLine;
 import nl.sogeti.webshop.domain.Product;
 import nl.sogeti.webshop.dto.OrderDTO;
+import nl.sogeti.webshop.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,7 @@ public class ProductService {
 
     public CustomerOrder placeOrder(OrderDTO orderRequest) {
         CustomerOrder order = new CustomerOrder();
+        order.setUser(SecurityUtils.getCurrentUser());
         order.setDate(LocalDate.now());
         order.setOrderLines(new ArrayList<>());
         order.setCustomerData(orderRequest.getCustomerData());

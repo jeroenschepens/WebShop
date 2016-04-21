@@ -24,10 +24,13 @@ angular.module('PetShop').controller('MenuController', ['$scope', '$location', '
     $scope.toggleLogin = function () {
         $scope.showLogin = !$scope.showLogin;
     };
+    $scope.isLoggedIn = function () {
+        return Login.isLoggedIn();
+    };
     $scope.login = function () {
         Login.login($scope.username, $scope.password).then(function () {
             $scope.showLogin = false;
-            $location.path("/");
+            //$location.path("/");
         });
     };
     $scope.logout = function () {

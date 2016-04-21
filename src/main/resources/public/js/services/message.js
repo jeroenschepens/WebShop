@@ -4,8 +4,6 @@ angular.module('PetShop').factory('Message', ['$location', function ($location) 
     var status = false;
     var path = null;
 
-    console.log("hello!");
-
     return {
         setMessage: function (newMessage) {
             message = newMessage;
