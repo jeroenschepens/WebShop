@@ -11,5 +11,7 @@ angular.module('PetShop').config(function ($routeProvider) {
         templateUrl: '/templates/pages/place-order.html',
         controller: 'PlaceController',
         controllerAs: 'place'
+    }).when('/account', {
+        templateUrl: '/templates/pages/account.html'
     }).otherwise({redirectTo: '/'});
 });

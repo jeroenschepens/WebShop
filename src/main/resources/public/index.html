@@ -18,10 +18,13 @@
 <script src="js/routes.js"></script>
 <script src="js/services/products.js"></script>
 <script src="js/services/cart.js"></script>
+<script src="js/services/login.js"></script>
+<script src="js/services/message.js"></script>
 <script src="js/controllers/menu-controller.js"></script>
 <script src="js/controllers/product-controller.js"></script>
 <script src="js/controllers/cart-controller.js"></script>
 <script src="js/controllers/place-controller.js"></script>
+<script src="js/controllers/message-controller.js"></script>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container" ng-controller="MenuController">
         <div class="navbar-header">
@@ -33,12 +36,52 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li ng-show="isLoggedIn()" ng-class="getClass('/account')">
+                <a href="/#/account"><span class="glyphicon glyphicon-user"></span> {{getUser().customerData.firstName}}</a>
+            </li>
             <li ng-class="getClass('/cart')">
                 <a href="/#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> {{countItems()}}</a>
+            </li>
+            <li ng-show="isLoggedIn()">
+                <p class="navbar-btn"><a ng-click="logout()" class="btn btn-danger"><span
+                        class="glyphicon glyphicon-log-out"></span></a>
+                </p>
+            </li>
+            <li ng-click="$event.stopPropagation();" ng-hide="isLoggedIn()" ng-class="{ active: showLogin }"
+                class="dropdown">
+                <p class="navbar-btn">
+                    <a ng-click="toggleLogin()" class="btn btn-success"><span class="glyphicon glyphicon-log-in"></span></a>
+                </p>
+                <div ng-show="showLogin" class="dropdown-menu form-login stop-propagation" role="menu">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            <i class="glyphicon glyphicon-envelope"></i> Email address
+                        </label>
+                        <input ng-model="username" type="email" class="form-control" id="exampleInputEmail1"
+                               placeholder="Enter email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">
+                            <i class="glyphicon glyphicon-lock"></i> Password
+                        </label>
+                        <input ng-model="password" type="password" class="form-control" id="exampleInputPassword1"
+                               placeholder="Password"/>
+                    </div>
+                    <button ng-click="login()" type="submit" class="btn btn-success btn-block"><i
+                            class="glyphicon glyphicon-ok"></i>
+                        Inloggen
+                    </button>
+                </div>
             </li>
         </ul>
     </div>
 </nav>
-<div ng-view class="container"></div>
+<div class="container">
+    <div class="alert alert-success" ng-controller="MessageController" ng-show="getMessage()">
+        <a ng-click="dismiss()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{getMessage()}}
+    </div>
+    <div ng-view></div>
+</div>
 </body>
 </html>

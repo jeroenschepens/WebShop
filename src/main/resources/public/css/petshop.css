@@ -6,3 +6,18 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+a {
+    cursor: pointer
+}
+
+.form-login {
+    display: block;
+    padding: 1em;
+    min-width: 280px; /* change width as per your requirement */
+}
+
+.navbar-btn {
+    margin-left: 8px;
+    margin-right: 8px;
+}
