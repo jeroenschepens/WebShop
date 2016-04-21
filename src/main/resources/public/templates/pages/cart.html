@@ -7,6 +7,7 @@
             <th>Hoeveelheid</th>
             <th>Prijs</th>
             <th>Totaal</th>
+            <th></th>
         </tr>
         </thead>
         <tfoot>
@@ -15,6 +16,7 @@
             <td></td>
             <td></td>
             <td>{{total | currency:"€"}}</td>
+            <td></td>
         </tr>
         </tfoot>
         <tbody>
@@ -28,6 +30,9 @@
             </td>
             <td>{{item.price |currency:"€"}}</td>
             <td>{{item.price * item.amount | currency:"€"}}</td>
+            <td><button ng-click="clearItem(item.id)" type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button></td>
         </tr>
         </tbody>
     </table>
