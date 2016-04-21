@@ -43,6 +43,6 @@ public class ProductControllerIT {
         endpointUrl += "/products";
         ResponseEntity<String> response = testRestTemplate.getForEntity(endpointUrl, String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-        assertThat(response.getBody(), equalTo("[{\"id\":1,\"name\":\"Test\",\"description\":\"Test description\",\"price\":1.95}]"));
+        assertThat(response.getBody(), equalTo("[{\"id\":1,\"name\":\"Test\",\"description\":\"Test description\",\"price\":1.95,\"category\":null}]"));
     }
 }

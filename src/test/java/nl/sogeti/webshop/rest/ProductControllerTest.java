@@ -41,6 +41,6 @@ public class ProductControllerTest {
     public void getProducts() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/products").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("[{\"id\":1,\"name\":\"Test\",\"description\":\"Test description\",\"price\":1.95}]")));
+                .andExpect(content().string(equalTo("[{\"id\":1,\"name\":\"Test\",\"description\":\"Test description\",\"price\":1.95,\"category\":null}]")));
     }
 }
