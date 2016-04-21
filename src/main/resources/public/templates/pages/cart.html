@@ -30,9 +30,11 @@
             </td>
             <td>{{item.price |currency:"€"}}</td>
             <td>{{item.price * item.amount | currency:"€"}}</td>
-            <td><button ng-click="clearItem(item.id)" type="button" class="btn btn-danger">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button></td>
+            <td>
+                <button ng-click="clearItem(item.id)" type="button" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>
