@@ -19,11 +19,13 @@
 <script src="js/services/products.js"></script>
 <script src="js/services/cart.js"></script>
 <script src="js/services/login.js"></script>
+<script src="js/services/message.js"></script>
 <script src="js/controllers/menu-controller.js"></script>
 <script src="js/controllers/product-controller.js"></script>
 <script src="js/controllers/cart-controller.js"></script>
 <script src="js/controllers/place-controller.js"></script>
 <script src="js/controllers/login-controller.js"></script>
+<script src="js/controllers/message-controller.js"></script>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container" ng-controller="MenuController">
         <div class="navbar-header">
@@ -41,6 +43,12 @@
         </ul>
     </div>
 </nav>
-<div ng-view class="container"></div>
+<div class="container">
+    <div class="alert alert-success" ng-controller="MessageController" ng-show="getMessage()">
+        <a ng-click="dismiss()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{getMessage()}}
+    </div>
+    <div ng-view></div>
+</div>
 </body>
 </html>
