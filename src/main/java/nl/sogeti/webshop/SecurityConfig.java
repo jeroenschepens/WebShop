@@ -1,5 +1,7 @@
 package nl.sogeti.webshop;
 
+import nl.sogeti.webshop.service.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -18,12 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password("secret1").roles("USER")
-                .and()
-                .withUser("user2").password("secret2").roles("USER");
+        auth.userDetailsService(authenticationService);
     }
 
     @Override
@@ -39,5 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             }
         });
         http.csrf().disable();
+        http.logout().logoutUrl("/logout");
     }
 }

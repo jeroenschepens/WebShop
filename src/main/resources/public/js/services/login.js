@@ -2,6 +2,12 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
+    var login = this;
+
+    $http.get('/login').success(function (data) {
+        login.user = data;
+    });
+
     return {
         login: function (username, password) {
 
@@ -40,7 +46,20 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
 
             return $http.get('/login', {
                 headers: {'Authorization': 'Basic ' + output}
+            }).then(function (data) {
+                console.log(data);
+                login.user = data.data;
             });
+        },
+
+        logout: function () {
+            return $http.get('/logout').then(function () {
+                login.user = null;
+            });
+        },
+
+        getUser: function () {
+            return login.user;
         }
     }
 }]);

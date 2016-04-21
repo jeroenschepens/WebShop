@@ -16,6 +16,9 @@ public class CustomerOrder {
 
     private LocalDate date;
 
+    @ManyToOne
+    private User user;
+
     @Embedded
     private CustomerData customerData;
 
