@@ -24,7 +24,6 @@ angular.module('PetShop').factory('Message', ['$location', function ($location) 
                     }
                 }
             }
-            console.log(message);
             return message;
         },
         dismiss: function () {
