@@ -5,10 +5,14 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
     var login = this;
 
     login.user = {};
+
     login.loggedIn = false;
 
     $http.get('/login').then(function (data) {
-        login.user = data.data;
+        if (data.data.id) {
+            login.user = data.data;
+            login.loggedIn = true;
+        }
     });
 
     return {
