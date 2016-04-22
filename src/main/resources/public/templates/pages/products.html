@@ -36,9 +36,13 @@
                 <td><h4>{{product.name}}</h4>{{product.description}}</td>
                 <td> {{product.price | currency:"€"}}</td>
                 <td>
-                    <button type="button" ng-click="shop.addItem(product.id)" class="btn btn-success btn-sm pull-right">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Voeg toe
+                    <button ng-hide="shop.isAdmin()" type="button" ng-click="shop.addItem(product.id)"
+                            class="btn btn-success btn-sm pull-right">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Voeg toe
                     </button>
+                    <a ng-show="shop.isAdmin()" ng-href="{{'#/products/' + product.id}}"
+                       class="btn btn-primary btn-sm pull-right" role="button">
+                        <span class="glyphicon glyphicon-pencil"></span> Wijzigen</a>
                 </td>
             </tr>
             </tbody>

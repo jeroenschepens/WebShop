@@ -30,8 +30,12 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> findByCategoryId(Long categoryId) {
-        return productRepository.findByCategoryId(categoryId);
+    public Product findById(Long id) {
+        return productRepository.findById(id);
+    }
+
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
     }
 
     public CustomerOrder placeOrder(OrderDTO orderRequest) {

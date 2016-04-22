@@ -14,6 +14,9 @@ angular.module('PetShop').config(function ($routeProvider) {
     }).when('/register', {
         templateUrl: '/templates/pages/register.html',
         controller: 'RegisterController'
+    }).when('/products/:id', {
+        templateUrl: '/templates/pages/product-detail.html',
+        controller: 'ProductDetailController'
     }).when('/account', {
         templateUrl: '/templates/pages/account.html'
     }).otherwise({redirectTo: '/'});

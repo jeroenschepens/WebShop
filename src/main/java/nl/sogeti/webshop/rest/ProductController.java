@@ -1,10 +1,10 @@
 package nl.sogeti.webshop.rest;
 
+import nl.sogeti.webshop.domain.Product;
 import nl.sogeti.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +23,13 @@ public class ProductController {
     }
 
     @RequestMapping("/products/{id}")
-    public List getProductsByCategory(@PathVariable("id") Long id) {
-        return productService.findByCategoryId(id);
+    public Product getProductById(@PathVariable("id") Long id) {
+        return productService.findById(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/products", method = RequestMethod.PUT)
+    public Product saveProduct(@RequestBody Product product) {
+        return productService.saveProduct(product);
     }
 }
