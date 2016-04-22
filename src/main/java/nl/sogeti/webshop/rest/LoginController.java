@@ -1,8 +1,7 @@
 package nl.sogeti.webshop.rest;
 
 import nl.sogeti.webshop.domain.User;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import nl.sogeti.webshop.util.SecurityUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,13 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
-
     //@PreAuthorize("hasRole('USER')")
     @RequestMapping(value = "/login")
     public Object login() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.getPrincipal().getClass() == User.class) {
-            return auth.getPrincipal();
+        User user = SecurityUtils.getCurrentUser();
+        if (user != null) {
+            if (user.isAdmin()) {
+                return user;
+            } else {
+                return user.getCustomerData();
+            }
         } else {
             return null;
         }

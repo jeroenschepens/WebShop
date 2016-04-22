@@ -7,12 +7,22 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
     login.user = {};
 
     login.loggedIn = false;
+    login.admin = false;
+
+    function processLogin(data) {
+        if (data.data) {
+            login.loggedIn = true;
+            if (data.data.admin) {
+                login.admin = true;
+                login.user = data.data.customerData;
+            } else {
+                login.user = data.data;
+            }
+        }
+    }
 
     $http.get('/login').then(function (data) {
-        if (data.data.id) {
-            login.user = data.data;
-            login.loggedIn = true;
-        }
+        processLogin(data);
     });
 
     return {
@@ -54,14 +64,14 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
             return $http.get('/login', {
                 headers: {'Authorization': 'Basic ' + output}
             }).then(function (data) {
-                login.loggedIn = true;
-                login.user = data.data;
+                processLogin(data);
             });
         },
 
         logout: function () {
             return $http.get('/logout').then(function () {
                 login.loggedIn = false;
+                login.admin = false;
                 login.user = {};
             });
         },
@@ -72,6 +82,10 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
 
         isLoggedIn: function () {
             return login.loggedIn;
+        },
+
+        isAdmin: function () {
+            return login.admin;
         }
     }
 }]);

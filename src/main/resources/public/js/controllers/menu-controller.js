@@ -27,6 +27,9 @@ angular.module('PetShop').controller('MenuController', ['$scope', '$location', '
     $scope.isLoggedIn = function () {
         return Login.isLoggedIn();
     };
+    $scope.isAdmin = function () {
+        return Login.isAdmin();
+    };
     $scope.login = function () {
         Login.login($scope.username, $scope.password).then(function () {
             $scope.showLogin = false;
