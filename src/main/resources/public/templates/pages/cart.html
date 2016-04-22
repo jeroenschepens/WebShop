@@ -24,8 +24,10 @@
             <td>{{item.name}}</td>
             <td>{{item.amount}}
                 <div class="btn-group btn-group-sm" role="group">
-                    <button ng-click="addItem(item.id)" type="button" class="btn btn-success">+</button>
-                    <button ng-click="removeItem(item.id)" type="button" class="btn btn-danger">-</button>
+                    <button ng-click="addItem(item.id)" type="button" class="btn btn-success"><span
+                            class="glyphicon glyphicon-plus"></span></button>
+                    <button ng-click="removeItem(item.id)" type="button" class="btn btn-danger"><span
+                            class="glyphicon glyphicon-minus"></span></button>
                 </div>
             </td>
             <td>{{item.price |currency:"€"}}</td>
@@ -38,7 +40,10 @@
         </tr>
         </tbody>
     </table>
-    <a href="/#/place-order" class="btn btn-success" role="button">Bestelling plaatsen</a>
-    <button type="button" ng-click="cart.clearItems()" class="btn btn-danger">Verwijder alles</button>
+    <a href="/#/place-order" class="btn btn-success" role="button"><span
+            class="glyphicon glyphicon-shopping-cart"></span> Bestelling plaatsen</a>
+    <button type="button" ng-click="cart.clearItems()" class="btn btn-danger"><span
+            class="glyphicon glyphicon-trash"></span> Verwijder alles
+    </button>
 </div>
 <div ng-show="items.length < 1 && ready === true">U heeft geen artikelen in uw winkelmandje</div>
