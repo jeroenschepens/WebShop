@@ -56,7 +56,6 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
             }).then(function (data) {
                 login.loggedIn = true;
                 login.user = data.data;
-                console.log(data);
             });
         },
 
