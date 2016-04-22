@@ -7,7 +7,7 @@ angular.module('PetShop').controller('PlaceController', ['$scope', '$location', 
     $scope.placeOrder = function () {
         Cart.placeOrder($scope.customer).success(function (data) {
             Cart.clearItems();
-            Message.setMessage("Bestelling geplaatst met nummer #" + data.id);
+            Message.setMessage("Bestelling geplaatst met nummer #" + data.id, "success", false);
             $location.path("/");
         })
     };

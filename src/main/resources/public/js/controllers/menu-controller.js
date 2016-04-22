@@ -30,7 +30,7 @@ angular.module('PetShop').controller('MenuController', ['$scope', '$location', '
     $scope.login = function () {
         Login.login($scope.username, $scope.password).then(function () {
             $scope.showLogin = false;
-            //$location.path("/");
+            $location.path("/");
         });
     };
     $scope.logout = function () {
