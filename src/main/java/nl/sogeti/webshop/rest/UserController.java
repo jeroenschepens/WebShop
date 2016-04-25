@@ -28,7 +28,6 @@ public class UserController {
         userService.updateUser(user);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping("/current")
     public User getCurrentUser() {
         return SecurityUtils.getCurrentUser();

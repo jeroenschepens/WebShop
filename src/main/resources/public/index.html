@@ -44,7 +44,7 @@
                 <a href="/#/register"><span class="glyphicon glyphicon-user"></span> Registreren</a>
             </li>
             <li ng-show="isLoggedIn()" ng-class="getClass('/account')">
-                <a href="/#/account"><span class="glyphicon glyphicon-user"></span> {{getUser().firstName}}</a>
+                <a href="/#/account"><span class="glyphicon glyphicon-user"></span> {{getUser().customerData.firstName}}</a>
             </li>
             <li ng-hide="isAdmin()" ng-class="getClass('/cart')">
                 <a href="/#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> <span
