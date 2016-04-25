@@ -1,4 +1,8 @@
-angular.module('PetShop').controller('ProductDetailController', ['$scope', '$routeParams', '$http', '$location', 'Message', function ($scope, $routeParams, $http, $location, Message) {
+angular.module('PetShop').controller('ProductDetailController', ['$scope', '$routeParams', '$http', '$location', 'Login', 'Message', function ($scope, $routeParams, $http, $location, Login, Message) {
+
+    if (!Login.isAdmin()) {
+        $location.path("/");
+    }
 
     $scope.product = {};
 
