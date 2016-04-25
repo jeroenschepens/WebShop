@@ -1,6 +1,7 @@
 package nl.sogeti.webshop.service;
 
 import nl.sogeti.webshop.domain.User;
+import nl.sogeti.webshop.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,5 +22,9 @@ public class UserService {
         } else {
             throw new RuntimeException("EMAIL_USED");
         }
+    }
+
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
 }

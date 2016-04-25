@@ -22,10 +22,13 @@
 <script src="js/services/message.js"></script>
 <script src="js/controllers/menu-controller.js"></script>
 <script src="js/controllers/product-controller.js"></script>
+<script src="js/controllers/product-detail-controller.js"></script>
+<script src="js/controllers/product-create-controller.js"></script>
 <script src="js/controllers/cart-controller.js"></script>
 <script src="js/controllers/place-controller.js"></script>
 <script src="js/controllers/message-controller.js"></script>
 <script src="js/controllers/register-controller.js"></script>
+<script src="js/controllers/account-controller.js"></script>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container" ng-controller="MenuController">
         <div class="navbar-header">
@@ -41,7 +44,7 @@
                 <a href="/#/register"><span class="glyphicon glyphicon-user"></span> Registreren</a>
             </li>
             <li ng-show="isLoggedIn()" ng-class="getClass('/account')">
-                <a href="/#/account"><span class="glyphicon glyphicon-user"></span> {{getUser().firstName}}</a>
+                <a href="/#/account"><span class="glyphicon glyphicon-user"></span> {{getUser().customerData.firstName}}</a>
             </li>
             <li ng-hide="isAdmin()" ng-class="getClass('/cart')">
                 <a href="/#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> <span

@@ -26,12 +26,32 @@ public class ProductService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public List<Product> findProducts() {
+        if (!SecurityUtils.isAdmin()) {
+            return productRepository.findByActiveTrue();
+        } else {
+            return productRepository.findAll();
+        }
     }
 
-    public List<Product> findByCategoryId(Long categoryId) {
-        return productRepository.findByCategoryId(categoryId);
+    public Product findById(Long id) {
+        return productRepository.findById(id);
+    }
+
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    public void deleteProduct(Long id) {
+        productRepository.delete(id);
+    }
+
+    public void setProductActive(Long id, boolean active) {
+        Product product = productRepository.findById(id);
+        if (product != null) {
+            product.setActive(active);
+            productRepository.save(product);
+        }
     }
 
     public CustomerOrder placeOrder(OrderDTO orderRequest) {

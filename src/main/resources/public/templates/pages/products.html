@@ -13,6 +13,12 @@
                 {{category.name}}
             </button>
         </div>
+        <form class="form-inline pull-right ">
+            <div class="form-group">
+                <label class="sr-only" for="search">Name</label>
+                <input ng-model="search" type="text" class="form-control" id="search" placeholder="Zoeken">
+            </div>
+        </form>
     </div>
 </div>
 <div class="row">
@@ -26,16 +32,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="product in shop.products | filter: shop.categoryFilter">
+            <tr ng-repeat="product in shop.products | filter: shop.categoryFilter | filter: search">
                 <td><h4>{{product.name}}</h4>{{product.description}}</td>
                 <td> {{product.price | currency:"€"}}</td>
                 <td>
-                    <button type="button" ng-click="shop.addItem(product.id)" class="btn btn-success btn-sm pull-right">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Voeg toe
+                    <button ng-hide="shop.isAdmin()" type="button" ng-click="shop.addItem(product.id)"
+                            class="btn btn-success btn-sm pull-right">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Voeg toe
                     </button>
+                    <a ng-show="shop.isAdmin()" ng-href="{{'#/products/' + product.id}}"
+                       class="btn btn-primary btn-sm pull-right" role="button">
+                        <span class="glyphicon glyphicon-pencil"></span> Wijzigen</a>
                 </td>
             </tr>
             </tbody>
         </table>
+        <a href="/#/create-product" class="btn btn-success" role="button" ng-show="shop.isAdmin()"><span
+                class="glyphicon glyphicon-plus"></span> Product toevoegen</a>
     </div>
 </div>

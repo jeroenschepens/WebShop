@@ -14,14 +14,12 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
             login.loggedIn = true;
             if (data.data.admin) {
                 login.admin = true;
-                login.user = data.data.customerData;
-            } else {
-                login.user = data.data;
             }
+            login.user = data.data;
         }
     }
 
-    $http.get('/login').then(function (data) {
+    $http.get('/api/users/current').then(function (data) {
         processLogin(data);
     });
 
@@ -61,7 +59,7 @@ angular.module('PetShop').factory('Login', ['$http', function ($http) {
             } while (i < input.length);
 
 
-            return $http.get('/login', {
+            return $http.get('/api/users/current', {
                 headers: {'Authorization': 'Basic ' + output}
             }).then(function (data) {
                 processLogin(data);

@@ -1,10 +1,11 @@
 package nl.sogeti.webshop.rest;
 
+import nl.sogeti.webshop.domain.Product;
 import nl.sogeti.webshop.service.ProductService;
+import nl.sogeti.webshop.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,11 +20,36 @@ public class ProductController {
 
     @RequestMapping("/products")
     public List getProducts() {
-        return productService.findAll();
+        return productService.findProducts();
     }
 
     @RequestMapping("/products/{id}")
-    public List getProductsByCategory(@PathVariable("id") Long id) {
-        return productService.findByCategoryId(id);
+    public Product getProductById(@PathVariable("id") Long id) {
+        return productService.findById(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/products", method = RequestMethod.PUT)
+    public Product saveProduct(@RequestBody Product product) {
+        if (product.getId() == null) {
+            product.setActive(true);
+        }
+        return productService.saveProduct(product);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable("id") Long id) {
+        try {
+            productService.deleteProduct(id);
+        } catch (Exception ex) {
+            productService.setProductActive(id, false);
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/products/{id}/activate", method = RequestMethod.GET)
+    public void activateProduct(@PathVariable("id") Long id) {
+        productService.setProductActive(id, true);
     }
 }

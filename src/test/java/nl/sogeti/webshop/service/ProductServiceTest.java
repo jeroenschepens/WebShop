@@ -29,7 +29,7 @@ public class ProductServiceTest {
 
     @Test
     public void findAll() throws Exception {
-        Collection<Product> list = productService.findAll();
+        Collection<Product> list = productService.findProducts();
 
         assertNotNull("failure - expected not null", list);
         assertEquals("failure - expected list size", 1, list.size());

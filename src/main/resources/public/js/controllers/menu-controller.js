@@ -1,4 +1,4 @@
-angular.module('PetShop').controller('MenuController', ['$scope', '$location', '$window', 'Cart', 'Login', function ($scope, $location, $window, Cart, Login) {
+angular.module('PetShop').controller('MenuController', ['$scope', '$location', '$window', '$route', 'Cart', 'Login', function ($scope, $location, $window, $route, Cart, Login) {
 
     $window.onclick = function () {
         if ($scope.showLogin === true) {
@@ -33,10 +33,12 @@ angular.module('PetShop').controller('MenuController', ['$scope', '$location', '
     $scope.login = function () {
         Login.login($scope.username, $scope.password).then(function () {
             $scope.showLogin = false;
-            $location.path("/");
+            $route.reload();
         });
     };
     $scope.logout = function () {
-        Login.logout();
+        Login.logout().then(function(){
+            $route.reload();
+        });
     };
 }]);

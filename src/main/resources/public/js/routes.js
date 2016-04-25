@@ -14,7 +14,14 @@ angular.module('PetShop').config(function ($routeProvider) {
     }).when('/register', {
         templateUrl: '/templates/pages/register.html',
         controller: 'RegisterController'
+    }).when('/create-product', {
+        templateUrl: '/templates/pages/product-create.html',
+        controller: 'ProductCreateController'
+    }).when('/products/:id', {
+        templateUrl: '/templates/pages/product-detail.html',
+        controller: 'ProductDetailController'
     }).when('/account', {
-        templateUrl: '/templates/pages/account.html'
+        templateUrl: '/templates/pages/account.html',
+        controller: 'AccountController'
     }).otherwise({redirectTo: '/'});
 });

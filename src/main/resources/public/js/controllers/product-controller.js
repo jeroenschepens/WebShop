@@ -1,4 +1,4 @@
-angular.module('PetShop').controller('ProductController', ['$http', 'Cart', function ($http, Cart) {
+angular.module('PetShop').controller('ProductController', ['$http', 'Cart', 'Login', function ($http, Cart, Login) {
     var shop = this;
     this.products = [];
     this.categories = [];
@@ -33,9 +33,13 @@ angular.module('PetShop').controller('ProductController', ['$http', 'Cart', func
 
     shop.getClass = function (cat) {
         if (shop.categoryFilter.category.id === cat) {
-            return "btn-info"
+            return "btn-primary"
         } else {
             return "btn-default"
         }
-    }
+    };
+
+    shop.isAdmin = function () {
+        return Login.isAdmin();
+    };
 }]);
