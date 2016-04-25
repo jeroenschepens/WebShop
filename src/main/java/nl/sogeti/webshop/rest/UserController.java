@@ -22,7 +22,7 @@ public class UserController {
         userService.registerUser(user);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("#user.id == authentication.principal.id")
     @RequestMapping(method = RequestMethod.PUT)
     public void updateUser(@RequestBody User user) {
         userService.updateUser(user);

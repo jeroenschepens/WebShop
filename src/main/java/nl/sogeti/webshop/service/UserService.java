@@ -25,10 +25,6 @@ public class UserService {
     }
 
     public void updateUser(User user) {
-        User currentUser = SecurityUtils.getCurrentUser();
-        if (currentUser != null) {
-            currentUser.setCustomerData(user.getCustomerData());
-        }
-        userRepository.save(currentUser);
+        userRepository.save(user);
     }
 }
