@@ -2,10 +2,16 @@ angular.module('PetShop').controller('ProductDetailController', ['$scope', '$rou
 
     $scope.product = {};
 
+    $scope.categories = [];
+
     var productId = $routeParams.id;
 
     $http.get("/products/" + productId).then(function (data) {
         $scope.product = data.data;
+    });
+
+    $http.get('/categories').then(function (data) {
+        $scope.categories = data.data;
     });
 
     $scope.save = function () {
