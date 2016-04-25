@@ -42,10 +42,14 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public void deactivateProduct(Long id) {
+    public void deleteProduct(Long id) {
+        productRepository.delete(id);
+    }
+
+    public void setProductActive(Long id, boolean active) {
         Product product = productRepository.findById(id);
         if (product != null) {
-            product.setActive(false);
+            product.setActive(active);
             productRepository.save(product);
         }
     }

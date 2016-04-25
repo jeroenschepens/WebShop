@@ -31,11 +31,25 @@ public class ProductController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/products", method = RequestMethod.PUT)
     public Product saveProduct(@RequestBody Product product) {
+        if (product.getId() == null) {
+            product.setActive(true);
+        }
         return productService.saveProduct(product);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
-    public void deactivateProduct(@PathVariable("id") Long id) {
-        productService.deactivateProduct(id);
+    public void deleteProduct(@PathVariable("id") Long id) {
+        try {
+            productService.deleteProduct(id);
+        } catch (Exception ex) {
+            productService.setProductActive(id, false);
+        }
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/products/{id}/activate", method = RequestMethod.GET)
+    public void activateProduct(@PathVariable("id") Long id) {
+        productService.setProductActive(id, true);
     }
 }

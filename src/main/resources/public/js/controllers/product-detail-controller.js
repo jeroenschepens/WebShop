@@ -27,4 +27,11 @@ angular.module('PetShop').controller('ProductDetailController', ['$scope', '$rou
             $location.path("/");
         })
     };
+
+    $scope.activate = function () {
+        $http.get("/products/" + productId + "/activate").then(function () {
+            Message.setMessage("Product toegevoegd aan winkel", "success", false);
+            $location.path("/");
+        })
+    };
 }]);

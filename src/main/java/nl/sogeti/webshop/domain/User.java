@@ -1,5 +1,6 @@
 package nl.sogeti.webshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,12 +42,13 @@ public class User implements UserDetails {
         this.customerData = customerData;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (!admin) {
             return AuthorityUtils.createAuthorityList("ROLE_USER");
         } else {
-            return AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+            return AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
         }
     }
 
