@@ -13,5 +13,12 @@ angular.module('PetShop').controller('ProductDetailController', ['$scope', '$rou
             Message.setMessage("Product bijgewerkt", "success", false);
             $location.path("/");
         });
-    }
+    };
+
+    $scope.delete = function () {
+        $http.delete("/products/" + productId).then(function () {
+            Message.setMessage("Product verwijderd uit winkel", "success", false);
+            $location.path("/");
+        })
+    };
 }]);

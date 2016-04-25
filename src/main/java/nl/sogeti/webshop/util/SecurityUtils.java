@@ -17,4 +17,9 @@ public class SecurityUtils {
             return null;
         }
     }
+
+    public static boolean isAdmin() {
+        User user = getCurrentUser();
+        return user != null && user.isAdmin();
+    }
 }

@@ -36,6 +36,10 @@
             <button type="submit" class="btn btn-success"
                     ng-disabled="productForm.$invalid"><span class="glyphicon glyphicon-floppy-disk"></span> Opslaan
             </button>
+            <button type="button" ng-click="delete()" class="btn btn-danger"
+                    ng-disabled="productForm.$invalid"><span class="glyphicon glyphicon-trash"></span> Verwijder uit
+                winkel
+            </button>
         </div>
     </div>
 </form>

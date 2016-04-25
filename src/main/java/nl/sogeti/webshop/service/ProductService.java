@@ -26,8 +26,12 @@ public class ProductService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public List<Product> findProducts() {
+        if (!SecurityUtils.isAdmin()) {
+            return productRepository.findByActiveTrue();
+        } else {
+            return productRepository.findAll();
+        }
     }
 
     public Product findById(Long id) {
@@ -36,6 +40,14 @@ public class ProductService {
 
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    public void deactivateProduct(Long id) {
+        Product product = productRepository.findById(id);
+        if (product != null) {
+            product.setActive(false);
+            productRepository.save(product);
+        }
     }
 
     public CustomerOrder placeOrder(OrderDTO orderRequest) {

@@ -13,5 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findById(@Param("id") Long id);
 
+    List<Product> findByActiveTrue();
+
     List<Product> findByIdIn(List<Long> idList);
 }

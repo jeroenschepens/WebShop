@@ -2,6 +2,7 @@ package nl.sogeti.webshop.rest;
 
 import nl.sogeti.webshop.domain.Product;
 import nl.sogeti.webshop.service.ProductService;
+import nl.sogeti.webshop.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ProductController {
 
     @RequestMapping("/products")
     public List getProducts() {
-        return productService.findAll();
+        return productService.findProducts();
     }
 
     @RequestMapping("/products/{id}")
@@ -31,5 +32,10 @@ public class ProductController {
     @RequestMapping(value = "/products", method = RequestMethod.PUT)
     public Product saveProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
+    }
+
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+    public void deactivateProduct(@PathVariable("id") Long id) {
+        productService.deactivateProduct(id);
     }
 }

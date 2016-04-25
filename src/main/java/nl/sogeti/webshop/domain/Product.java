@@ -23,6 +23,8 @@ public class Product {
     @NotNull
     private BigDecimal price;
 
+    private boolean active;
+
     @ManyToOne
     @JoinColumn(name = "category")
     private Category category;
@@ -57,6 +59,14 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Category getCategory() {
