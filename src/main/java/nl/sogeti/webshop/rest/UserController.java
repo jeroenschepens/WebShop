@@ -1,8 +1,10 @@
 package nl.sogeti.webshop.rest;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import nl.sogeti.webshop.domain.User;
 import nl.sogeti.webshop.service.UserService;
 import nl.sogeti.webshop.util.SecurityUtils;
+import nl.sogeti.webshop.util.Views;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,7 @@ public class UserController {
         userService.updateUser(user);
     }
 
+    @JsonView(Views.User.class)
     @RequestMapping("/current")
     public User getCurrentUser() {
         return SecurityUtils.getCurrentUser();
