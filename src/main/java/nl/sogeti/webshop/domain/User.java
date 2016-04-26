@@ -28,7 +28,7 @@ public class User implements UserDetails {
 
     private String password;
 
-    @JsonView(Views.Admin.class)
+    @JsonView(Views.User.class)
     private boolean admin;
 
     public Long getId() {

@@ -4,7 +4,8 @@
          ng-class="{'has-error': registerForm.firstName.$dirty && registerForm.firstName.$invalid, 'has-success': registerForm.firstName.$dirty && registerForm.firstName.$valid}">
         <label for="firstName" class="col-sm-2 control-label">Voornaam</label>
         <div class="col-sm-10">
-            <input ng-model="user.customerData.firstName" type="text" class="form-control" name="firstName" id="firstName"
+            <input ng-model="user.customerData.firstName" type="text" class="form-control" name="firstName"
+                   id="firstName"
                    placeholder="Voornaam"
                    required>
         </div>
@@ -39,7 +40,7 @@
          ng-class="{'has-error': registerForm.password.$dirty && registerForm.password.$invalid, 'has-success': registerForm.password.$dirty && registerForm.password.$valid}">
         <label for="password" class="col-sm-2 control-label">Wachtwoord</label>
         <div class="col-sm-10">
-            <input ng-model="user.password" type="text" class="form-control" name="password" id="password"
+            <input ng-model="user.password" type="password" class="form-control" name="password" id="password"
                    placeholder="Wachtwoord"
                    required>
         </div>
