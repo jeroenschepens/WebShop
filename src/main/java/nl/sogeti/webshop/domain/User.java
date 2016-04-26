@@ -1,6 +1,8 @@
 package nl.sogeti.webshop.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.sogeti.webshop.util.Views;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,15 +17,18 @@ import java.util.Collection;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User implements UserDetails {
 
+    @JsonView(Views.User.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonView(Views.User.class)
     @Embedded
     private CustomerData customerData;
 
     private String password;
 
+    @JsonView(Views.Admin.class)
     private boolean admin;
 
     public Long getId() {

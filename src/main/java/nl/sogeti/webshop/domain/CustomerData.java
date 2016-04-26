@@ -1,5 +1,7 @@
 package nl.sogeti.webshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import nl.sogeti.webshop.util.Views;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Embeddable;
@@ -10,21 +12,29 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CustomerData {
 
+    @JsonView(Views.User.class)
     private String firstName;
 
+    @JsonView(Views.User.class)
     private String infix;
 
+    @JsonView(Views.User.class)
     private String lastName;
 
+    @JsonView(Views.User.class)
     @Email
     private String email;
 
+    @JsonView(Views.User.class)
     private String street;
 
+    @JsonView(Views.User.class)
     private String houseNumber;
 
+    @JsonView(Views.User.class)
     private String postCode;
 
+    @JsonView(Views.User.class)
     private String city;
 
     public String getFirstName() {
