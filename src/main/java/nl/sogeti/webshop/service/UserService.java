@@ -14,6 +14,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private MailService mailService;
+
     public void registerUser(User user) {
         user.setAdmin(false);
         user.setId(null);
@@ -21,6 +24,7 @@ public class UserService {
         String email = user.getUsername();
         if (userRepository.findOneByCustomerDataEmail(email).orElse(null) == null) {
             userRepository.save(user);
+            mailService.sendMail(user);
         } else {
             throw new RuntimeException("EMAIL_USED");
         }
