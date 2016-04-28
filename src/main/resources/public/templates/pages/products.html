@@ -32,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="product in shop.products | filter: shop.categoryFilter | filter: search"
+            <tr ng-repeat="product in shop.products | filter: shop.categoryFilter | filter: {name : search, description : search }"
                 ng-class="{danger: !product.active}">
                 <td><h4>{{product.name}}</h4>{{product.description}}</td>
                 <td> {{product.price | currency:"€"}}</td>
