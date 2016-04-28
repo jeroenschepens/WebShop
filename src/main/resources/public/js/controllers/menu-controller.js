@@ -8,6 +8,7 @@ angular.module('PetShop').controller('MenuController', ['$scope', '$location', '
     };
 
     $scope.showLogin = false;
+    $scope.error = false;
 
     $scope.username = '';
     $scope.password = '';
@@ -22,6 +23,7 @@ angular.module('PetShop').controller('MenuController', ['$scope', '$location', '
         return Login.getUser();
     };
     $scope.toggleLogin = function () {
+        $scope.error = false;
         $scope.showLogin = !$scope.showLogin;
     };
     $scope.isLoggedIn = function () {
@@ -33,11 +35,17 @@ angular.module('PetShop').controller('MenuController', ['$scope', '$location', '
     $scope.login = function () {
         Login.login($scope.username, $scope.password).then(function () {
             $scope.showLogin = false;
+            $scope.username = '';
+            $scope.password = '';
             $route.reload();
+        }, function () {
+            $scope.error = true;
+            $scope.username = '';
+            $scope.password = '';
         });
     };
     $scope.logout = function () {
-        Login.logout().then(function(){
+        Login.logout().then(function () {
             $route.reload();
         });
     };
